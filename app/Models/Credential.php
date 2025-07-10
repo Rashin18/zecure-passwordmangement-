@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Credential extends Model
 {
     protected $fillable = [
-        'user_id', 'website', 'username', 'password', 'link', 'category',
+        'name','user_id', 'website', 'username', 'password', 'link', 'category',
     ];
 
     use SoftDeletes;

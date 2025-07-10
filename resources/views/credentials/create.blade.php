@@ -31,6 +31,11 @@
                         @csrf
 
                         <div class="mb-3">
+                            <label for="name" class="form-label fw-semibold">Name</label>
+                            <input type="text" name="name" id="name" class="form-control rounded-3" value="{{ old('name') }}" required>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="website" class="form-label fw-semibold">Website Name</label>
                             <input type="text" name="website" id="website" class="form-control rounded-3" value="{{ old('website') }}" required>
                         </div>
@@ -49,7 +54,7 @@
                             <label for="link" class="form-label fw-semibold">Website URL (Optional)</label>
                             <input type="url" name="link" id="link" class="form-control rounded-3" value="{{ old('link') }}">
                         </div>
-                        
+
                         <div class="mb-3">
                             <label for="category" class="form-label">Category</label>
                             <select name="category" class="form-select">

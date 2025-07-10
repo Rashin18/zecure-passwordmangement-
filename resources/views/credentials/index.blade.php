@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container py-5">
+
     <!-- Header -->
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
         <h2 class="fw-bold mb-0 text-primary">
@@ -11,7 +12,7 @@
         <!-- Search + Filter -->
         <form action="{{ route('credentials.index') }}" method="GET" class="d-flex align-items-center gap-2 flex-wrap">
             <input type="text" name="search" class="form-control shadow-sm rounded-pill px-4"
-                   placeholder="Search by website or username..." value="{{ request('search') }}" />
+                   placeholder="Search by website, username or name..." value="{{ request('search') }}" />
 
             <select name="category" class="form-select rounded-pill shadow-sm">
                 <option value="">All Categories</option>
@@ -25,8 +26,6 @@
                 <i class="bi bi-search"></i>
             </button>
         </form>
-
-
 
         <!-- Action Buttons -->
         <div class="d-flex gap-2">
@@ -62,6 +61,7 @@
                 <thead class="table-light text-center">
                     <tr>
                         <th>Website</th>
+                        <th>Name</th>
                         <th>Category</th>
                         <th>Link</th>
                         <th>Username</th>
@@ -75,6 +75,7 @@
                             <td class="fw-semibold text-primary">
                                 <i class="bi bi-globe2 me-1"></i>{{ $credential->website }}
                             </td>
+                            <td>{{ $credential->name ?? '-' }}</td>
                             <td>
                                 <span class="badge bg-secondary">{{ $credential->category ?? 'N/A' }}</span>
                             </td>
@@ -89,22 +90,22 @@
                             </td>
                             <td>{{ $credential->username }}</td>
                             <td>
-    <div class="input-group">
-        <input type="password"
-               class="form-control bg-light rounded-start"
-               id="password-{{ $credential->id }}"
-               value="{{ \Illuminate\Support\Facades\Crypt::decryptString($credential->password) }}"
-               readonly>
-        <button type="button" class="btn btn-outline-secondary"
-                onclick="togglePassword({{ $credential->id }})">
-            <i class="bi bi-eye" id="icon-{{ $credential->id }}"></i>
-        </button>
-        <button type="button" class="btn btn-outline-success"
-                onclick="copyPassword({{ $credential->id }})">
-            <i class="bi bi-clipboard"></i>
-        </button>
-    </div>
-</td>
+                                <div class="input-group">
+                                    <input type="password"
+                                           class="form-control bg-light rounded-start"
+                                           id="password-{{ $credential->id }}"
+                                           value="{{ \Illuminate\Support\Facades\Crypt::decryptString($credential->password) }}"
+                                           readonly>
+                                    <button type="button" class="btn btn-outline-secondary"
+                                            onclick="togglePassword({{ $credential->id }})">
+                                        <i class="bi bi-eye" id="icon-{{ $credential->id }}"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-success"
+                                            onclick="copyPassword({{ $credential->id }})">
+                                        <i class="bi bi-clipboard"></i>
+                                    </button>
+                                </div>
+                            </td>
                             <td class="text-end">
                                 <a href="{{ route('credentials.edit', $credential->id) }}"
                                    class="btn btn-sm btn-outline-primary me-2 rounded-pill">
@@ -128,7 +129,7 @@
     @endif
 </div>
 
-<!-- Toggle Password JS -->
+<!-- Toggle/Copy JS -->
 <script>
     function togglePassword(id) {
         const input = document.getElementById('password-' + id);
@@ -148,14 +149,8 @@
     function copyPassword(id) {
         const input = document.getElementById('password-' + id);
         navigator.clipboard.writeText(input.value)
-            .then(() => {
-                alert('Password copied to clipboard!');
-            })
-            .catch(err => {
-                alert('Failed to copy password.');
-                console.error(err);
-            });
+            .then(() => alert('Password copied to clipboard!'))
+            .catch(err => alert('Failed to copy password.'));
     }
 </script>
-
 @endsection

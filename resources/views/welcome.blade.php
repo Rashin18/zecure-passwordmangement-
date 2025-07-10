@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ZeCuRe | Secure Password Vault</title>
+  <title>ZeCuRe by Groware Global | Secure Password Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   @vite('resources/css/app.css')
@@ -43,9 +43,7 @@
       text-decoration: none;
     }
 
-    .navbar img {
-      width: 40px;
-    }
+    
 
     .navbar nav a {
       position: relative;
@@ -180,10 +178,12 @@
 
   <!-- Navbar -->
   <header class="navbar">
-    <a href="#" class="logo">
-      <img src="{{ asset('images/logo.png') }}" alt="Logo" />
-      ZeCuRe
-    </a>
+  <div class="flex items-center space-x-4">
+                <a href="{{ url('/') }}" class="flex items-center space-x-2">
+                    <img src="{{ asset('images/logo.svg') }}" alt="Zecure Logo" class="h-8 w-auto">
+                    <span class="text-xl font-extrabold text-black"></span>
+                </a>
+            </div>
     <nav>
       <a href="#hero">Home</a>
       <a href="#about">About</a>
@@ -195,21 +195,22 @@
 
   <!-- Hero Section -->
   <section id="hero">
-    <div class="glass-box">
-      <img src="{{ asset('images/logo.png') }}" alt="ZeCuRe Logo" class="w-24 mx-auto mb-4" />
-      <h1 class="text-5xl font-extrabold text-yellow-400 mb-4">ZeCuRe</h1>
-      <p class="text-gray-700 text-lg mb-6">Your Encrypted Digital Vault for Passwords</p>
-      <a href="{{ route('login') }}" class="btn btn-login">Login</a>
-      <a href="{{ route('register') }}" class="btn btn-register">Register</a>
-    </div>
-  </section>
+  <div class="glass-box">
+    <img src="{{ asset('images/logo.svg') }}" alt="Zecure Logo" class="h-13 w-auto mx-auto mb-3 block">
+    <h1 class="text-2xl font-extrabold mb-4">ZeCuRe by Groware Global</h1>
+    <p class="text-gray-700 text-lg mb-6">Your Encrypted Digital Vault for Passwords</p>
+    <a href="{{ route('login') }}" class="btn btn-login">Login</a>
+    <a href="{{ route('register') }}" class="btn btn-register">Register</a>
+  </div>
+</section>
+
 
   <!-- About Section -->
   <section id="about" class="bg-white border-t border-b border-gray-200">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
-      <h2 class="text-4xl font-bold mb-6 text-center text-gray-800">About ZeCuRe</h2>
+      <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">About ZeCuRe by Groware Global</h2>
       <p class="text-lg text-gray-700 text-justify leading-relaxed">
-        ZeCuRe is your personal encrypted vault to store credentials. Built with privacy-first technology, ZeCuRe never stores your passwords in plain text — only you can access your data.
+      ZeCuRe by Groware Global is your personal encrypted vault to store credentials. Built with privacy-first technology, ZeCuRe never stores your passwords in plain text — only you can access your data.
       </p>
       <p class="text-lg text-gray-700 text-justify leading-relaxed mt-4">
         Our mission is to deliver powerful yet user-friendly tools that help you secure and manage your digital life, effortlessly. Whether on desktop or mobile, ZeCuRe gives you secure access to your passwords wherever you go.
@@ -226,13 +227,13 @@
           <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Contact</h2>
           <p class="mb-4 text-lg text-gray-700 text-center">
             <strong>Email:</strong>
-            <a href="mailto:rashinhamza1826@gmail.com" class="hover:underline">rashinhamza1826@gmail.com</a>
+            <a href="mailto:rashinhamza1826@gmail.com" class="hover:underline"> info@growareglobal.com</a>
           </p>
           <p class="mb-4 text-lg text-gray-700 text-center">
-            <strong>Phone:</strong> +91 98765 43210, +91 7012849290
+            <strong>Phone:</strong>  +91 7592 091 994
           </p>
           <p class="mb-4 text-lg text-gray-700 text-center">
-            <strong>Location:</strong> ZeCuRe Pvt Ltd, Pangappara, Trivandrum, Kerala - 695581
+            <strong>Location:</strong>Groware Global, Mankuzhi Junction, Pangappara, Thiruvananthapuram, Kerala 695581
           </p>
         </div>
 

@@ -13,25 +13,26 @@ class CredentialController extends Controller
      * Display a listing of the user's credentials.
      */
     public function index(Request $request)
-    {
-        $query = Credential::where('user_id', auth()->id());
+{
+    $query = Credential::query();
 
-        if ($request->has('search')) {
-            $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->where('website', 'like', "%{$search}%")
-                  ->orWhere('username', 'like', "%{$search}%");
-            });
-        }
-
-        if ($request->filled('category')) {
-            $query->where('category', $request->category);
-        }
-
-        $credentials = $query->latest()->get();
-
-        return view('credentials.index', compact('credentials'));
+    if ($request->filled('search')) {
+        $query->where(function ($q) use ($request) {
+            $q->where('website', 'like', '%' . $request->search . '%')
+              ->orWhere('username', 'like', '%' . $request->search . '%')
+              ->orWhere('name', 'like', '%' . $request->search . '%');
+        });
     }
+
+    if ($request->filled('category')) {
+        $query->where('category', $request->category);
+    }
+
+    $credentials = $query->latest()->get();
+
+    return view('credentials.index', compact('credentials'));
+}
+
 
     /**
      * Show the form for creating a new credential.
@@ -48,6 +49,7 @@ class CredentialController extends Controller
     {
         $request->validate([
             'website' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'username' => 'required|string|max:255',
             'password' => 'required|string',
             'link' => 'nullable|url',
@@ -57,6 +59,7 @@ class CredentialController extends Controller
         Credential::create([
             'user_id' => auth()->id(),
             'website' => $request->website,
+            'name' => $request->name,
             'username' => $request->username,
             'password' => Crypt::encryptString($request->password),
             'link' => $request->link,
@@ -91,6 +94,7 @@ class CredentialController extends Controller
 
         $request->validate([
             'website' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'username' => 'required|string|max:255',
             'password' => 'required|string',
             'link' => 'nullable|url',
@@ -99,6 +103,7 @@ class CredentialController extends Controller
 
         $credential->update([
             'website' => $request->website,
+            'name' => $request->name,
             'username' => $request->username,
             'password' => Crypt::encryptString($request->password),
             'link' => $request->link,

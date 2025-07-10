@@ -4,8 +4,8 @@
             <!-- Logo + Name -->
             <div class="flex items-center space-x-4">
                 <a href="{{ url('/') }}" class="flex items-center space-x-2">
-                    <img src="{{ asset('images/logo.png') }}" alt="Zecure Logo" class="h-8 w-auto">
-                    <span class="text-xl font-extrabold text-black">ZeCuRe</span>
+                    <img src="{{ asset('images/logo.svg') }}" alt="Zecure Logo" class="h-8 w-auto">
+                    <span class="text-xl font-extrabold text-black"></span>
                 </a>
             </div>
 
