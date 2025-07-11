@@ -16,9 +16,12 @@
 
             <select name="category" class="form-select rounded-pill shadow-sm">
                 <option value="">All Categories</option>
-                <option value="Work" {{ request('category') == 'Work' ? 'selected' : '' }}>Work</option>
+                
                 <option value="Social" {{ request('category') == 'Social' ? 'selected' : '' }}>Social</option>
-                <option value="Banking" {{ request('category') == 'Banking' ? 'selected' : '' }}>Banking</option>
+                <option value="Email" {{ request('category') == 'Email' ? 'selected' : '' }}>Email</option>
+                <option value="Server" {{ request('category') == 'Server' ? 'selected' : '' }}>Server</option>
+                <option value="Github" {{ request('category') == 'Github' ? 'selected' : '' }}>Github</option>
+                <option value="Drive" {{ request('category') == 'Drive' ? 'selected' : '' }}>Drive</option>
                 <option value="Other" {{ request('category') == 'Other' ? 'selected' : '' }}>Other</option>
             </select>
 
@@ -38,6 +41,7 @@
             <a href="{{ route('credentials.trash') }}" class="btn btn-outline-danger rounded-pill">
                 <i class="bi bi-trash3"></i> View Trash
             </a>
+            
         </div>
     </div>
 

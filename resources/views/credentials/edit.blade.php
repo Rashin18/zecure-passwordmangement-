@@ -71,9 +71,13 @@
                             <label for="category" class="form-label fw-semibold">Category</label>
                             <select name="category" class="form-select rounded-3">
                                 <option value="">Select Category</option>
-                                <option value="Work" {{ old('category', $credential->category) == 'Work' ? 'selected' : '' }}>Work</option>
+                                
                                 <option value="Social" {{ old('category', $credential->category) == 'Social' ? 'selected' : '' }}>Social</option>
-                                <option value="Banking" {{ old('category', $credential->category) == 'Banking' ? 'selected' : '' }}>Banking</option>
+                               
+                                <option value="Email" {{ old('category', $credential->category ?? '') == 'Email' ? 'selected' : '' }}>Email</option>
+                                <option value="Server" {{ old('category', $credential->category ?? '') == 'Server' ? 'selected' : '' }}>Server</option>
+                                <option value="Github" {{ old('category', $credential->category ?? '') == 'Github' ? 'selected' : '' }}>Github</option>
+                                <option value="Drive" {{ old('category', $credential->category ?? '') == 'Drive' ? 'selected' : '' }}>Drive</option>
                                 <option value="Other" {{ old('category', $credential->category) == 'Other' ? 'selected' : '' }}>Other</option>
                             </select>
                         </div>

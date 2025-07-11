@@ -11,24 +11,52 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    <!-- Fonts (Optional) -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <!-- Vite Assets -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-<style>
-    body {
-        background: url('{{ asset('images/welcome1.png') }}') no-repeat center center fixed;
-        background-size: cover;
-    }
-</style>
+    <!-- Custom Manual CSS -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Figtree', sans-serif;
+            background: url('{{ asset('images/welcome1.png') }}') no-repeat center center fixed;
+            background-size: cover;
+            color: #212529;
+        }
+        .navbar, .card, .table {
+            backdrop-filter: blur(5px);
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 0.75rem;
+        }
+        .table td, .table th {
+            vertical-align: middle;
+        }
+        .btn-outline-success, .btn-outline-primary, .btn-outline-danger, .btn-outline-secondary {
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-outline-success:hover {
+            background-color: #198754;
+            color: #fff;
+        }
+        .btn-outline-primary:hover {
+            background-color: #0d6efd;
+            color: #fff;
+        }
+        .btn-outline-danger:hover {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        .btn-outline-secondary:hover {
+            background-color: #6c757d;
+            color: #fff;
+        }
+    </style>
 </head>
-<body class="bg-light text-dark">
-
-    <!-- Navigation Bar -->
+<body class="bg-light">
+    <!-- Navigation -->
     @auth
-        @include('layouts.navigation') {{-- Your Bootstrap navigation component --}}
+        @include('layouts.navigation')
     @endauth
 
     <!-- Optional Header -->
@@ -45,7 +73,7 @@
         @yield('content')
     </main>
 
-    <!-- Bootstrap 5 JS (optional) -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

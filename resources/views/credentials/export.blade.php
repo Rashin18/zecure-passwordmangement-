@@ -47,6 +47,7 @@
                 <th>Website</th>
                 <th>Name</th>
                 <th>Link</th>
+                <th>Category</th>
                 <th>Username / Email</th>
                 <th>Password</th>
             </tr>
@@ -55,6 +56,7 @@
             @forelse($credentials as $credential)
                 <tr>
                     <td>{{ $credential->website }}</td>
+                    
                     <td>{{ $credential->name }}</td>
                     <td>
                         @if($credential->link)
@@ -62,6 +64,11 @@
                         @else
                             N/A
                         @endif
+                    </td>
+                    <td>
+                                <span class="badge bg-secondary">
+                                    {{ $credential->category ?? 'N/A' }}
+                                </span>
                     </td>
                     <td>{{ $credential->username }}</td>
                     <td>{{ \Illuminate\Support\Facades\Crypt::decryptString($credential->password) }}</td>

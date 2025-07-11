@@ -13,26 +13,25 @@ class CredentialController extends Controller
      * Display a listing of the user's credentials.
      */
     public function index(Request $request)
-{
-    $query = Credential::query();
+    {
+        $query = Credential::where('user_id', auth()->id());
 
-    if ($request->filled('search')) {
-        $query->where(function ($q) use ($request) {
-            $q->where('website', 'like', '%' . $request->search . '%')
-              ->orWhere('username', 'like', '%' . $request->search . '%')
-              ->orWhere('name', 'like', '%' . $request->search . '%');
-        });
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('website', 'like', "%{$search}%")
+                  ->orWhere('username', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->filled('category')) {
+            $query->where('category', $request->category);
+        }
+
+        $credentials = $query->latest()->get();
+
+        return view('credentials.index', compact('credentials'));
     }
-
-    if ($request->filled('category')) {
-        $query->where('category', $request->category);
-    }
-
-    $credentials = $query->latest()->get();
-
-    return view('credentials.index', compact('credentials'));
-}
-
 
     /**
      * Show the form for creating a new credential.

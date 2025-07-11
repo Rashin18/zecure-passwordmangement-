@@ -1,58 +1,125 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center">
-            <!-- Logo + Name -->
-            <div class="flex items-center space-x-4">
-                <a href="{{ url('/') }}" class="flex items-center space-x-2">
-                    <img src="{{ asset('images/logo.svg') }}" alt="Zecure Logo" class="h-8 w-auto">
-                    <span class="text-xl font-extrabold text-black"></span>
-                </a>
-            </div>
+<style>
+  .custom-navbar {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 1rem 2rem;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
 
-            <!-- Navigation Links -->
-            <div class="hidden md:flex space-x-6 items-center">
-                <a href="{{ route('credentials.index') }}" class="text-sm font-bold text-black hover:text-indigo-600 transition">Passwords</a>
-                
-                @auth
-                    <span class="text-sm font-bold text-gray-800">{{ Auth::user()->name }}</span>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="text-sm font-bold text-red-600 hover:text-red-800 transition">Logout</button>
-                    </form>
-                @else
-                    <a href="{{ route('login') }}" class="text-sm font-bold text-black hover:text-indigo-600">Login</a>
-                    <a href="{{ route('register') }}" class="text-sm font-bold text-black hover:text-indigo-600">Register</a>
-                @endauth
-            </div>
+  .custom-navbar a {
+    position: relative;
+    color: #2d2d2d;
+    font-weight: 600;
+    margin-left: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
 
-            <!-- Mobile Toggle -->
-            <div class="md:hidden">
-                <button @click="open = !open" class="text-black hover:text-indigo-600 focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"
-                         viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                        <path :class="{ 'hidden': open }" class="inline-flex" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{ 'hidden': !open }" class="hidden" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
+  .custom-navbar a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(to right, #3b82f6, #6366f1);
+    transition: width 0.3s ease;
+  }
 
-    <!-- Mobile Menu -->
-    <div :class="{ 'block': open, 'hidden': !open }" class="md:hidden hidden px-4 pb-4">
-        <div class="space-y-2 pt-2">
-            <a href="{{ route('credentials.index') }}" class="block font-bold text-black hover:text-indigo-600">Passwords</a>
+  .custom-navbar a:hover {
+    color: #1f2937;
+  }
 
-            @auth
-                <span class="block text-sm font-bold text-gray-800 pt-2">{{ Auth::user()->name }}</span>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="text-red-600 hover:text-red-800 text-sm font-bold mt-1">Log out</button>
-                </form>
-            @else
-                <a href="{{ route('login') }}" class="block font-bold text-black hover:text-indigo-600">Login</a>
-                <a href="{{ route('register') }}" class="block font-bold text-black hover:text-indigo-600">Register</a>
-            @endauth
-        </div>
-    </div>
+  .custom-navbar a:hover::after {
+    width: 100%;
+  }
+
+  .mobile-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .mobile-menu a,
+  .mobile-menu span,
+  .mobile-menu form {
+    margin: 0.5rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .custom-navbar .desktop-menu {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: block;
+    }
+  }
+</style>
+
+<nav x-data="{ open: false }" class="custom-navbar">
+  <!-- Logo -->
+  <div class="flex items-center space-x-4">
+    <a href="{{ url('/') }}" class="logo d-flex align-items-center gap-2">
+      <img src="{{ asset('images/logo.svg') }}" alt="Zecure Logo" style="height: 32px;">
+      <span class="fw-bold fs-5 text-dark"></span>
+    </a>
+  </div>
+
+  <!-- Desktop Menu -->
+  <div class="desktop-menu d-flex align-items-center">
+    <a href="{{ route('credentials.index') }}">Passwords</a>
+
+    @auth
+      <span class="ms-3 fw-semibold text-dark">{{ Auth::user()->name }}</span>
+      <form method="POST" action="{{ route('logout') }}" class="ms-3">
+        @csrf
+        <button type="submit" style="background: none; border: none; color: #dc2626; font-weight: 600;">Logout</button>
+      </form>
+    @else
+      <a href="{{ route('login') }}">Login</a>
+      <a href="{{ route('register') }}">Register</a>
+    @endauth
+  </div>
+
+  <!-- Mobile Toggle Button -->
+  <div class="d-md-none">
+    <button @click="open = !open" class="mobile-toggle-btn">
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <path :class="{ 'hidden': open }" class="inline-flex" d="M4 6h16M4 12h16M4 18h16" />
+        <path :class="{ 'hidden': !open }" class="hidden" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
 </nav>
+
+<!-- Mobile Menu -->
+<div x-show="open" class="mobile-menu d-md-none">
+  <a href="{{ route('credentials.index') }}">Passwords</a>
+
+  @auth
+    <span class="fw-semibold text-dark">{{ Auth::user()->name }}</span>
+    <form method="POST" action="{{ route('logout') }}">
+      @csrf
+      <button type="submit" style="background: none; border: none; color: #dc2626; font-weight: 600;">Logout</button>
+    </form>
+  @else
+    <a href="{{ route('login') }}">Login</a>
+    <a href="{{ route('register') }}">Register</a>
+  @endauth
+</div>

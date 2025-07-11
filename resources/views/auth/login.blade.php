@@ -5,7 +5,7 @@
     <div class="col-md-6 col-lg-5">
         <div class="auth-card text-center">
         <img src="{{ asset('images/logo.svg') }}" alt="Zecure Logo" class="h-13 w-auto mx-auto mb-3 block">
-        <<h1 class="text-2xl font-extrabold mb-4">ZeCuRe by Groware Global</h1>
+        <h1 class="text-2xl font-extrabold mb-4">ZeCuRe by Groware Global</h1>
 
                 <h2 class="mb-4">Login to Your Account</h2>
 

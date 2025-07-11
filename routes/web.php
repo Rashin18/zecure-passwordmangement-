@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/credentials/export/pdf', [CredentialExportController::class, 'exportPDF'])->name('credentials.export.pdf');
     Route::get('/credentials/trash', [CredentialController::class, 'trash'])->name('credentials.trash');
     Route::post('/credentials/{id}/restore', [CredentialController::class, 'restore'])->name('credentials.restore');
+    
 
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
