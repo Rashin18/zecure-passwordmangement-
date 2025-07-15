@@ -38,7 +38,7 @@ jobs:
         coverage: none
 
     - name: 📦 Install Composer dependencies
-      run: composer install --no-progress --prefer-dist --optimize-autoloader && composer require laravel/breeze --dev && php artisan breeze:install && npm install && npm run build
+      run: composer install --no-progress --prefer-dist --optimize-autoloader && composer require laravel/breeze --dev && php artisan breeze:install && npm install
 
     - name: 📝 Set up environment file and app key
       run: |
