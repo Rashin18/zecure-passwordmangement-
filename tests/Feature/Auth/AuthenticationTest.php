@@ -19,7 +19,7 @@ test('users can authenticate using the login screen', function () {
     ]);
 
     $this->assertAuthenticatedAs($user);
-    $response->assertRedirect('/dashboard'); // Change if your redirect route is different
+    $response->assertRedirect('/credentials'); // Change if your redirect route is different
 });
 
 test('users can not authenticate with invalid password', function () {
