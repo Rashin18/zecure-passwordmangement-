@@ -20,7 +20,7 @@ jobs:
           MYSQL_USER: laravel
           MYSQL_PASSWORD: secret
         ports:
-          - 3306:3306
+          - 3308:3306 # Map container's 3306 to host 3308
         options: >-
           --health-cmd="mysqladmin ping --silent"
           --health-interval=10s
@@ -53,7 +53,7 @@ jobs:
       env:
         DB_CONNECTION: mysql
         DB_HOST: 127.0.0.1
-        DB_PORT: 3306
+        DB_PORT: 3308
         DB_DATABASE: laravel
         DB_USERNAME: laravel
         DB_PASSWORD: secret
@@ -63,8 +63,9 @@ jobs:
       env:
         DB_CONNECTION: mysql
         DB_HOST: 127.0.0.1
-        DB_PORT: 3306
+        DB_PORT: 3308
         DB_DATABASE: laravel
         DB_USERNAME: laravel
         DB_PASSWORD: secret
       run: php artisan test
+
