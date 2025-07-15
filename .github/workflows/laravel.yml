@@ -44,7 +44,6 @@ jobs:
       run: |
         cp .env.example .env
         php artisan key:generate
-        php artisan breeze:install
 
     - name: 📁 Set correct permissions
       run: |
