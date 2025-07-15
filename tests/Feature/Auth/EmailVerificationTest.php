@@ -30,7 +30,7 @@ test('email can be verified', function () {
     expect($user->fresh()->hasVerifiedEmail())->toBeTrue();
 
     // ✅ Corrected redirect to named route
-    $response->assertRedirect('/profile'); 
+    $response->assertRedirect(route('credentials.index') . '?verified=1');
 });
 
 test('email is not verified with invalid hash', function () {
