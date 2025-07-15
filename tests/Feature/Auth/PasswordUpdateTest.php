@@ -7,13 +7,13 @@ test('password can be updated', function () {
     $user = User::factory()->create();
 
     $response = $this
-        ->actingAs($user)
-        ->from('/profile')
-        ->put('/password', [
-            'current_password' => 'password',
-            'password' => 'new-password',
-            'password_confirmation' => 'new-password',
-        ]);
+    ->actingAs($user)
+    ->from('/profile')
+    ->post('/change-password', [ // ✅ was put('/password')
+        'current_password' => 'password',
+        'password' => 'new-password',
+        'password_confirmation' => 'new-password',
+    ]);
 
     $response
         ->assertSessionHasNoErrors()
