@@ -70,15 +70,15 @@ jobs:
     #     DB_PASSWORD: secret
     #   run: php artisan db:seed --force
 
-    - name: 🧪 Run Feature & Unit Tests
-      env:
-        DB_CONNECTION: mysql
-        DB_HOST: 127.0.0.1
-        DB_PORT: 3308
-        DB_DATABASE: laravel
-        DB_USERNAME: laravel
-        DB_PASSWORD: secret
-        APP_ENV: testing
-        APP_DEBUG: true
-      run: php artisan test --verbose
+ - name: 🧪 Run Feature & Unit Tests
+  env:
+    DB_CONNECTION: mysql
+    DB_HOST: 127.0.0.1
+    DB_PORT: 3308
+    DB_DATABASE: laravel
+    DB_USERNAME: laravel
+    DB_PASSWORD: secret
+    APP_ENV: testing
+    APP_DEBUG: true
+  run: php artisan test
 
