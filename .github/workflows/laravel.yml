@@ -40,7 +40,7 @@ jobs:
     - name: 📦 Install Composer dependencies
       run: composer install --no-progress --prefer-dist --optimize-autoloader
 
-    - name: 📝 Set up environment file
+    - name: 📝 Set up environment file and app key
       run: |
         cp .env.example .env
         php artisan key:generate
@@ -59,7 +59,7 @@ jobs:
         DB_PASSWORD: secret
       run: php artisan migrate --force
 
-    # Optional: seed test data (like a test user)
+    # Optional: seed database if needed
     # - name: 🌱 Seed database
     #   env:
     #     DB_CONNECTION: mysql
@@ -70,15 +70,16 @@ jobs:
     #     DB_PASSWORD: secret
     #   run: php artisan db:seed --force
 
- - name: 🧪 Run Feature & Unit Tests
-  env:
-    DB_CONNECTION: mysql
-    DB_HOST: 127.0.0.1
-    DB_PORT: 3308
-    DB_DATABASE: laravel
-    DB_USERNAME: laravel
-    DB_PASSWORD: secret
-    APP_ENV: testing
-    APP_DEBUG: true
-  run: php artisan test
+    - name: 🧪 Run Tests
+      env:
+        DB_CONNECTION: mysql
+        DB_HOST: 127.0.0.1
+        DB_PORT: 3308
+        DB_DATABASE: laravel
+        DB_USERNAME: laravel
+        DB_PASSWORD: secret
+        APP_ENV: testing
+        APP_DEBUG: true
+      run: php artisan test
+
 
