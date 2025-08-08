@@ -1,13 +1,15 @@
 @extends('layouts.guest')
 
+
+
 @section('content')
 <div class="container d-flex align-items-center justify-content-center h-100">
     <div class="col-md-6 col-lg-5">
         <div class="auth-card text-center">
-        <img src="{{ asset('images/logo.svg') }}" alt="Zecure Logo" class="h-13 w-auto mx-auto mb-3 block">
-        <h1 class="text-2xl font-extrabold mb-4">ZeCuRe by Groware Global</h1>
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="auth-logo mx-auto d-block">
+            <h1 class="text-3xl mb-2">ZeCuRe</h1>
 
-                <h2 class="mb-4">Login to Your Account</h2>
+                <h2 class="mb-4">Login</h2>
 
             @if ($errors->any())
                 <div class="alert alert-danger text-start">

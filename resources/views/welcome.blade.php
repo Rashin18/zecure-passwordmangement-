@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ZeCuRe by Groware Global | Secure Password Vault</title>
+  <title>ZeCuRe | Secure Password Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  @vite('resources/css/app.css')
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
@@ -20,7 +21,6 @@
       background-size: cover;
     }
 
-    /* Navbar Styles */
     .navbar {
       position: sticky;
       top: 0;
@@ -41,6 +41,10 @@
       font-weight: 700;
       color: #111827;
       text-decoration: none;
+    }
+
+    .navbar img {
+      width: 40px;
     }
 
     .navbar nav a {
@@ -72,21 +76,21 @@
     }
 
     #hero {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 100vh;
-      padding: 2rem;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.85), transparent);
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), transparent);
+}
 
     .glass-box {
       background: white;
       color: #111827;
       border-radius: 1.5rem;
       padding: 3rem 2rem;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
       max-width: 600px;
       width: 100%;
       animation: fadeIn 1.2s ease-out;
@@ -143,7 +147,10 @@
       text-align: center;
       color: #111827;
       font-size: 0.9rem;
-      
+    }
+
+    a {
+      color: #3b82f6;
     }
 
     iframe {
@@ -153,6 +160,16 @@
     }
 
     @media (max-width: 768px) {
+      .grid-cols-2 {
+        grid-template-columns: 1fr !important;
+      }
+
+      .md\\:pr-10,
+      .md\\:pl-10 {
+        padding: 0 !important;
+        border: none !important;
+      }
+
       iframe {
         height: 300px;
       }
@@ -163,9 +180,9 @@
 
   <!-- Navbar -->
   <header class="navbar">
-    <a href="{{ url('/') }}" class="logo">
-      <img src="{{ asset('images/logo.svg') }}" alt="Zecure Logo" style="height: 32px;">
-      
+    <a href="#" class="logo">
+      <img src="{{ asset('images/logo.png') }}" alt="Logo" />
+      ZeCuRe
     </a>
     <nav>
       <a href="#hero">Home</a>
@@ -179,69 +196,59 @@
   <!-- Hero Section -->
   <section id="hero">
     <div class="glass-box">
-      <img src="{{ asset('images/logo.svg') }}" alt="Zecure Logo" style="height: 48px;" class="mb-3">
-      <h1 class="text-2xl font-extrabold mb-4">ZeCuRe by Groware Global</h1>
+      <img src="{{ asset('images/logo.png') }}" alt="ZeCuRe Logo" class="w-24 mx-auto mb-4" />
+      <h1 class="text-5xl font-extrabold text-yellow-400 mb-4">ZeCuRe</h1>
       <p class="text-gray-700 text-lg mb-6">Your Encrypted Digital Vault for Passwords</p>
       <a href="{{ route('login') }}" class="btn btn-login">Login</a>
       <a href="{{ route('register') }}" class="btn btn-register">Register</a>
     </div>
   </section>
 
-<!-- About Section -->
-<section id="about" style="background-color: white; padding: 4rem 2rem; border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb;">
-  <div style="max-width: 960px; margin: auto;">
-    <h2 style="font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 2rem; color: #1f2937;">About ZeCuRe by Groware Global</h2>
-    <p style="font-size: 1.125rem; color: #374151; text-align: justify; line-height: 1.75;">
-      ZeCuRe by Groware Global is your personal encrypted vault to store credentials. Built with privacy-first technology, ZeCuRe never stores your passwords in plain text — only you can access your data.
-    </p>
-    <p style="font-size: 1.125rem; color: #374151; text-align: justify; line-height: 1.75; margin-top: 1rem;">
-      Our mission is to deliver powerful yet user-friendly tools that help you secure and manage your digital life, effortlessly. Whether on desktop or mobile, ZeCuRe gives you secure access to your passwords wherever you go.
-    </p>
-  </div>
-</section>
-
-<!-- Contact + Map Section -->
-<section id="contact" style="background-color: white; padding: 4rem 2rem; border-bottom: 1px solid #e5e7eb;">
-  <div style="max-width: 1140px; margin: auto; display: flex; flex-wrap: wrap; gap: 2rem;">
-
-    <!-- Contact Info -->
-    <div style="flex: 1; min-width: 300px; padding-right: 2rem; border-right: 1px solid #e5e7eb;">
-      <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 2rem; color: #1f2937;">Contact</h2>
-      <p style="font-size: 1.125rem; color: #374151; margin-bottom: 1.25rem;">
-        <strong>Email:</strong> 
-        <a href="mailto:info@growareglobal.com" style="color: #3b82f6; text-decoration: underline;">info@growareglobal.com</a>
+  <!-- About Section -->
+  <section id="about" class="bg-white border-t border-b border-gray-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <h2 class="text-4xl font-bold mb-6 text-center text-gray-800">About ZeCuRe</h2>
+      <p class="text-lg text-gray-700 text-justify leading-relaxed">
+        ZeCuRe is your personal encrypted vault to store credentials. Built with privacy-first technology, ZeCuRe never stores your passwords in plain text — only you can access your data.
       </p>
-      <p style="font-size: 1.125rem; color: #374151; margin-bottom: 1.25rem;">
-        <strong>Phone:</strong> +91 7592 091 994
-      </p>
-      <p style="font-size: 1.125rem; color: #374151;">
-        <strong>Location:</strong><br>
-        Groware Global, Mankuzhi Junction, Pangappara,<br>
-        Thiruvananthapuram, Kerala 695581
+      <p class="text-lg text-gray-700 text-justify leading-relaxed mt-4">
+        Our mission is to deliver powerful yet user-friendly tools that help you secure and manage your digital life, effortlessly. Whether on desktop or mobile, ZeCuRe gives you secure access to your passwords wherever you go.
       </p>
     </div>
+  </section>
 
-    <!-- Map -->
-    <div style="flex: 1; min-width: 300px;">
-      <div style="border-radius: 1rem; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.1); border: 1px solid #e5e7eb;">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7890.873675395178!2d76.90489959523822!3d8.55392378775937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bfa9d9e5c5a5%3A0x408e20165c8994a!2sGroware!5e0!3m2!1sen!2sin!4v1752122645988!5m2!1sen!2sin" 
-          allowfullscreen 
-          loading="lazy" 
-          style="width: 100%; height: 100%; min-height: 300px; border: 0;">
-        </iframe>
+  <!-- Contact + Map Section -->
+  <section id="contact" class="bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <!-- Contact Info -->
+        <div class="md:pr-10 md:border-r md:border-gray-300">
+          <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Contact</h2>
+          <p class="mb-4 text-lg text-gray-700 text-center">
+            <strong>Email:</strong>
+            <a href="mailto:rashinhamza1826@gmail.com" class="hover:underline">rashinhamza1826@gmail.com</a>
+          </p>
+          <p class="mb-4 text-lg text-gray-700 text-center">
+            <strong>Phone:</strong>  +91 7012849290
+          </p>
+          <p class="mb-4 text-lg text-gray-700 text-center">
+            <strong>Location:</strong> ZeCuRe Pvt Ltd, Peroorkada, Trivandrum, Kerala - 695581
+          </p>
+        </div>
+
+        <!-- Google Map -->
+        <div class="md:pl-10">
+          <div class="rounded-xl overflow-hidden shadow border border-gray-200">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7890.873675395178!2d76.90489959523822!3d8.55392378775937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bfa9d9e5c5a5%3A0x408e20165c8994a!2sGroware!5e0!3m2!1sen!2sin!4v1752122645988!5m2!1sen!2sin" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-
-<footer>
+  <!-- Footer -->
+  <footer>
     &copy; {{ date('Y') }} ZeCuRe. All rights reserved.
   </footer>
-</body>
-
-
 </body>
 </html>

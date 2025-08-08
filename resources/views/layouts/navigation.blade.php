@@ -75,8 +75,8 @@
   <!-- Logo -->
   <div class="flex items-center space-x-4">
     <a href="{{ url('/') }}" class="logo d-flex align-items-center gap-2">
-      <img src="{{ asset('images/logo.svg') }}" alt="Zecure Logo" style="height: 32px;">
-      <span class="fw-bold fs-5 text-dark"></span>
+      <img src="{{ asset('images/logo.png') }}" alt="Zecure Logo" style="height: 32px;">
+      <span class="fw-bold fs-5 text-dark">ZeCuRe</span>
     </a>
   </div>
 
